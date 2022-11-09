@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+# ignore all config except default
+/config/env/*
+!/config/env/default.json
+
+# application files
+.build
+.data
+
+# junk files
+.DS_Store
+Thumbs.db
+
+# TLS certificates
+/**/*.pem

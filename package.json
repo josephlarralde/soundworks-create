@@ -1,0 +1,32 @@
+{
+  "name": "@soundworks/create",
+  "authors": [
+    "Benjamin Matuszewski"
+  ],
+  "version": "0.0.0",
+  "description": "",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "create": "create.js",
+    "soundworks": "wizard.js"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "commander": "^9.4.1",
+    "json5": "^2.2.1",
+    "mkdirp": "^1.0.4",
+    "prompts": "^2.4.2",
+    "recursive-readdir": "^2.2.3"
+  },
+  "devDependencies": {
+    "@ircam/eslint-config": "^1.2.0",
+    "eslint": "^8.27.0"
+  }
+}

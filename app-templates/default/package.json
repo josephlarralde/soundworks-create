@@ -1,0 +1,38 @@
+{
+  "name": "soundworks-template",
+  "authors": [
+    "Benjamin Matuszewski"
+  ],
+  "description": "soundworks#v4 application template",
+  "license": "BSD-3-Clause",
+  "version": "4.0.0-alpha.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "npm run clean && sass src/clients/styles:.build/public/css && soundworks-buld -b",
+    "build:production": "npm run clean && soundworks-buld -b -m",
+    "clean": "soundworks-buld -c",
+    "watch-process": "soundworks-buld -p",
+    "watch-process:inspect": "soundworks-buld -i -p",
+    "watch-sass": "sass --watch src/clients/styles:.build/public/css",
+    "dev": "npm run build && (concurrently -p \"none\" \"npm run watch-process:inspect server\" \"soundworks-buld -b -w\" \"npm run watch-sass\")",
+    "start": "node .build/server/index.js"
+  },
+  "dependencies": {
+    "@ircam/simple-components": "^2.0.1",
+    "@soundworks/core": "^3.1.0",
+    "@soundworks/template-helpers": "^2.0.0",
+    "@webcomponents/webcomponentsjs": "^2.4.3",
+    "core-js": "^3.22.3",
+    "json5": "^2.2.1",
+    "lit": "^2.2.2",
+    "regenerator-runtime": "^0.13.7",
+    "sass": "^1.51.0",
+    "serve-static": "^1.15.0",
+    "source-map-support": "^0.5.21",
+    "template-literal": "^1.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
