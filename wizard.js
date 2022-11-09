@@ -9,10 +9,14 @@ import prompts from 'prompts';
 
 import { createClient } from './lib/create-client.js';
 import { ejectLauncher } from './lib/eject-launcher.js';
+import { packageInstaller } from './lib/package-installer.js';
+import { plugins, libraries } from './lib/database.js';
 
 const tasks = {
   createClient,
   ejectLauncher,
+  installPlugins: packageInstaller('plugins', plugins),
+  installLibs: packageInstaller('libraries', libraries),
 };
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -25,7 +29,9 @@ console.log('');
 // allow to trigger specific taks from command line
 program
   .option('-c, --create-client', 'create a new soundworks client')
-  .option('-c, --eject-launcher', 'eject the launcher and default views from `@soundworks/helpers`')
+  .option('-e, --eject-launcher', 'eject the launcher and default views from `@soundworks/helpers`')
+  .option('-p, --install-plugins', 'install/uninstall soundworks plugins`')
+  .option('-l, --install-libs', 'install/uninstall related libs`')
   .option('-i, --init', 'launched automatically by @soundworks/create, please do not launch manually')
 ;
 
@@ -78,8 +84,8 @@ ${chalk.yellow(`> welcome to the soundworks wizard`)}
         message: 'What do you want to do?',
         choices: [
           { title: 'Create a new soundworks client', value: 'createClient' },
-          { title: 'Install some soundworks plugins', value: 'installPlugins' },
-          { title: 'Install some related libs', value: 'installLibs' },
+          { title: 'Install/Uninstall some soundworks plugins', value: 'installPlugins' },
+          { title: 'Install/uninstall some related libs', value: 'installLibs' },
           { title: 'Create a new env file', value: 'createEnv' },
           { title: 'Find some documentation', value: 'findDoc' },
           // show existing clients, command to launch them, etc.

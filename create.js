@@ -11,7 +11,7 @@ import mkdirp from 'mkdirp';
 import readdir from 'recursive-readdir';
 import JSON5 from 'json5';
 
-import { toValidName, ignoreFiles } from './lib/utils.js';
+import { toValidName, ignoreFiles, onCancel } from './lib/utils.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
@@ -51,41 +51,19 @@ if (fs.existsSync(targetWorkingDir) && fs.readdirSync(targetWorkingDir).length >
 const templatesDir = path.join(__dirname, 'app-templates');
 const templatesMetas = JSON.parse(fs.readFileSync(path.join(templatesDir, 'metas.json')));
 
-const options = await prompts(
-  [
-    {
-      type: 'select',
-      name: 'template',
-      message: 'Choose a soundworks app template?',
-      choices: Object.entries(templatesMetas).map(([dir, infos]) => {
-        return {
-          title: infos.description,
-          value: dir,
-        };
-      }),
-    },
-    // {
-    //   type: 'select',
-    //   name: 'language',
-    //   message: 'Choose language',
-    //   choices: [
-    //     {
-    //       title: 'JavaScript',
-    //       value: 'js',
-    //     },
-    //     {
-    //       title: 'TypeScript',
-    //       value: 'ts',
-    //     },
-    //   ],
-    // },
-  ],
+const options = await prompts([
   {
-    onCancel: () => {
-      process.exit(1);
-    },
+    type: 'select',
+    name: 'template',
+    message: 'Choose a soundworks app template?',
+    choices: Object.entries(templatesMetas).map(([dir, infos]) => {
+      return {
+        title: infos.description,
+        value: dir,
+      };
+    }),
   },
-);
+], { onCancel });
 
 options.name = path.basename(targetWorkingDir);
 options.language = 'js';
@@ -128,17 +106,12 @@ const execOptions = {
   stdio: 'inherit',
 };
 
-// execSync(`npm install`, execOptions);
-
-// for dev purposes
-execSync(`npm link @soundworks/create`, execOptions);
-
-
+execSync(`npm install`, execOptions);
+// launch init wizard
 execSync(`npx soundworks --init`, execOptions);
 
 
 // await create(cwd, options);
-
 // console.log(bold(green('\nYour project is ready!')));
 
 // if (options.typescript) {
@@ -173,6 +146,5 @@ execSync(`npx soundworks --init`, execOptions);
 
 // console.log(`\nTo close the dev server, hit ${bold(cyan('Ctrl-C'))}`);
 // // console.log(`\nStuck? Visit us at ${cyan('https://svelte.dev/chat')}\n`);
-
 
 console.log('');
