@@ -17,7 +17,7 @@ The soundworks wizard is a interactive command line tool that gives you access t
 - create environment config files
 - etc.
 
-```sh
+```bash
 npx soundworks
 ```
 
@@ -41,15 +41,15 @@ Launch the server without rebuilding the application. Basically a shortcut for `
 
 #### `npm run watch [name]` _(node clients only)_
 
-Launch the `[name]` client and restart when the sources are updated. For example, if you are developping an application with a node client, you should run the `dev` script in one terminal:
+Launch the `[name]` client and restart when the sources are updated. For example, if you are developping an application with a node client, you should run the `dev` script (to build the source and start the server) in one terminal:
 
-```
+```bash
 npm run dev
 ```
 
-And launch and watch the node client(s) (e.g. called `thing`) in another terminal
+And launch and watch the node client(s) (e.g. called `thing`) in another terminal:
 
-```
+```bash
 npm run watch thing
 ```
 
@@ -70,7 +70,7 @@ For example, given the following config files:
 
 To start the server the `/config/env/prod.js` configuration file, you should run:
 
-```sh
+```bash
 ENV=prod npm run start
 ``` 
 
@@ -82,7 +82,7 @@ Override the port defined in the config file.
 
 For example, to launch the server on port `3000` whatever the `port` value defined in the default configuration file, you should run:
 
-```sh
+```bash
 PORT=3000 npm run start
 ```
 
@@ -92,7 +92,7 @@ Run several node client instances in parallel in the same terminal window.
 
 For example, to launch 4 instances of the client `thing` in parallel (each client instance being run inside its own `fork`), you should run:
 
-```sh
+```bash
 EMULATE=4 npm run watch:process thing
 ```
 
