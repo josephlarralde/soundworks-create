@@ -6,43 +6,44 @@ import { loadConfig } from '../../utils/load-config.js';
 import createLayout from './views/layout.js';
 
 // - General documentation: https://soundworks.dev/
-// - API documentation: https://soundworks.dev/api
-// - Issue Tracker: https://github.com/collective-soundworks/soundworks/issues
+// - API documentation:     https://soundworks.dev/api
+// - Issue Tracker:         https://github.com/collective-soundworks/soundworks/issues
 
-// Load configuration from config files
+/**
+ * Load configuration from config files
+ */
 const config = loadConfig(process.env.ENV, import.meta.url);
 
 async function bootstrap() {
   try {
-    // -------------------------------------------------------------------
-    // Create the soundworks client
-    // -------------------------------------------------------------------
+    /**
+     * Create the soundworks client
+     */
     const client = new Client(config);
 
-    // -------------------------------------------------------------------
-    // Register some soundworks plugins
-    // you will need to install the plugins before hand, run `npx soundworks` for help
-    // -------------------------------------------------------------------
+    /**
+     * Register some soundworks plugins
+     * you will need to install the plugins before hand, run `npx soundworks` for help
+     */
     // client.pluginManager.register('platform', pluginPlatform, { audioContext });
 
-    // -------------------------------------------------------------------
-    // Register the soundworks client into the launcher
-    //
-    // Automatically restarts the process when the socket closes or when an
-    // uncaught error occurs in the program.
-    // -------------------------------------------------------------------
+    /**
+     * Register the soundworks client into the launcher
+     *
+     * Automatically restarts the process when the socket closes or when an
+     * uncaught error occurs in the program.
+     */
     launcher.register(client);
 
-    // -------------------------------------------------------------------
-    // Launch application
-    // -------------------------------------------------------------------
+    /**
+     * Launch application
+     */
     await client.start();
 
-    // create application layout (mimic lit API)
+    // create application layout (which mimics lit API) and do your own stuff!
+
     /* eslint-disable-next-line no-unused-vars */
     const $layout = createLayout(client);
-
-    // do your own stuff!
 
   } catch(err) {
     console.error(err);
