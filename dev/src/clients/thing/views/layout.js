@@ -1,6 +1,27 @@
 import chalk from 'chalk';
 
-// create some contexts
+/**
+ * This simple layout is provided for convenience, feel free to edit or even
+ * remove it if you want to use you own logic.
+ *
+ * The general idea is to provide an API that mimics the one of `lit` allowing
+ * to reuse higher level abstractions created to target browsers (e.g. Contexts)
+ * with minimal adaptation of the code.
+ *
+ * @example
+ * const $layout = createLayout(client, $container);
+ * const myComponent = {
+ *   render() {
+ *     if (client.target === 'browser') {
+ *       return html`<h1>${Math.random()}</h1>`
+ *     } else {
+ *       return Math.random();
+ *     }
+ *   },
+ * };
+ * $layout.addComponent(myComponent);
+ * setInterval(() => $layout.requestUpdate(), 1000);
+ */
 class Layout {
   constructor(client) {
     this.client = client;

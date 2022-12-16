@@ -11,10 +11,10 @@ import '../../components/sw-audit.js';
  * const $layout = createLayout(client, $container);
  * const myComponent = {
  *   render() {
- *     return Math.random();
+ *     return html`<h1>${Math.random()}</h1>`
  *   },
  * };
- * $layout.add(myComponent);
+ * $layout.addComponent(myComponent);
  * setInterval(() => $layout.requestUpdate(), 1000);
  */
 class ControllerLayout extends LitElement {

@@ -5,6 +5,10 @@ import launcher from '@soundworks/helpers/launcher.js';
 
 import createLayout from './views/layout.js';
 
+// - General documentation: https://soundworks.dev/
+// - API documentation: https://soundworks.dev/api
+// - Issue Tracker: https://github.com/collective-soundworks/soundworks/issues
+
 const config = window.soundworksConfig;
 
 async function main($container, index) {

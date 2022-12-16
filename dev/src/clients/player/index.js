@@ -43,7 +43,7 @@ async function main($container) {
     // setting, the `launcher.language` property, e.g.:
     // `launcher.language = 'fr'`
     // - By default the launcher automatically reloads the client when the socket
-    // close or when the page is hidden. Such behavior can be quite important in
+    // closes or when the page is hidden. Such behavior can be quite important in
     // performance situation where you don't want some phone getting stuck making
     // noise without having any way left to stop it... Also be aware that a page
     // in a background tab will have all its timers (setTimeout, etc.) put in very
@@ -52,11 +52,11 @@ async function main($container) {
     launcher.register(client, { initScreensContainer: $container });
 
     // -------------------------------------------------------------------
-    // launch application
+    // Launch application
     // -------------------------------------------------------------------
     await client.start();
 
-    // create application layout
+    // create application layout ($layout is a raw lit component, see https://lit.dev/)
     const $layout = createLayout(client, $container);
 
     // do your own stuff!
