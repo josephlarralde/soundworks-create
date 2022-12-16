@@ -70,7 +70,7 @@ By default, the `/config/env/default.json` configuration file is used.
 
 Override the port defined in the config file. 
 
-For example, to launch the server on port `3000` whatever the port value defined in the default config file, you should run:
+For example, to launch the server on port `3000` whatever the `port` value defined in the default configuration file, you should run:
 
 ```sh
 PORT=3000 npm run start
