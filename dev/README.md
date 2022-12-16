@@ -41,7 +41,9 @@ Launch the server without rebuilding the application. Basically a shortcut for `
 
 #### `npm run watch [name]` _(node clients only)_
 
-Launch the `[name]` client and restart when the sources are updated. For example, if you are developping an application with a node client, you should run the `dev` script (to build the source and start the server) in one terminal:
+Launch the `[name]` client and restart when the sources are updated. 
+
+For example, if you are developping an application with a node client, you should run the `dev` script (to build the source and start the server) in one terminal:
 
 ```bash
 npm run dev
