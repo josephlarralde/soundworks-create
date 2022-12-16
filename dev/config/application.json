@@ -3,14 +3,14 @@
   author: 'the author',
 
   clients: {
-    player: {
+    'browser-default': {
       target: 'browser',
       default: true
     },
-    controller: {
+    'browser-controller': {
       target: 'browser',
     },
-    thing: {
+    'node-default': {
       target: 'node',
     },
   },

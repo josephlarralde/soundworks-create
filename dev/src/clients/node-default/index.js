@@ -10,7 +10,7 @@ import createLayout from './views/layout.js';
 // - Issue Tracker: https://github.com/collective-soundworks/soundworks/issues
 
 // Load configuration from config files
-const config = loadConfig(import.meta.url);
+const config = loadConfig(process.env.ENV, import.meta.url);
 
 async function bootstrap() {
   try {

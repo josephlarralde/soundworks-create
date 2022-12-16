@@ -8,7 +8,7 @@ import { loadConfig } from '../utils/load-config.js';
 // - API documentation: https://soundworks.dev/api
 // - Issue Tracker: https://github.com/collective-soundworks/soundworks/issues
 
-const config = loadConfig(import.meta.url);
+const config = loadConfig(process.env.ENV, import.meta.url);
 
 console.log(`
 --------------------------------------------------------

@@ -4,7 +4,7 @@ import chalk from 'chalk';
  * This simple layout is provided for convenience, feel free to edit or even
  * remove it if you want to use you own logic.
  *
- * The general idea is to provide an API that mimics the one of `lit` allowing
+ * The general goal is to provide an API that mimics the one of `lit` allowing
  * to reuse higher level abstractions created to target browsers (e.g. Contexts)
  * with minimal adaptation of the code.
  *
@@ -46,6 +46,8 @@ class Layout {
   }
 
   render() {
+    // write a new log only if the result of the component render is different
+    // from the last call.
     this.components.forEach(comp => {
       const last = this.lastComponentOutput.get(comp);
       const value = comp.render ? comp.render() : comp;

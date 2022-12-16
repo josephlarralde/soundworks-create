@@ -1,9 +1,14 @@
-import 'source-map-support/register.js';
-
+import '@soundworks/helpers/polyfills.js';
 import { Server } from '@soundworks/core/server.js';
-import pluginPlatform from '@soundworks/plugin-platform/server.js';
-// use `ENV=myconfigfile npm run dev` to run with a specific env config file
-import config from '../utils/load-config.js';
+// use `ENV=myconfigfile npm run dev` to run the server with a specific env config file
+// you can also override the port defined in the config file by doing `PORT=8001 npm run dev`
+import { loadConfig } from '../utils/load-config.js';
+
+// - General documentation: https://soundworks.dev/
+// - API documentation: https://soundworks.dev/api
+// - Issue Tracker: https://github.com/collective-soundworks/soundworks/issues
+
+const config = loadConfig(process.env.ENV, import.meta.url);
 
 console.log(`
 --------------------------------------------------------
@@ -12,24 +17,32 @@ console.log(`
 --------------------------------------------------------
 `);
 
-// API documentation: https://collective-soundworks.github.io/soundworks/
+
+// -------------------------------------------------------------------
+// Create the soundworks server and configure for usage within default
+// soundworks application file layout
+// -------------------------------------------------------------------
 const server = new Server(config);
-// configure server for usage within soundworks template
 server.setDefaultTemplateConfig();
 
 // -------------------------------------------------------------------
-// register plugins
+// Register plugins
 // -------------------------------------------------------------------
 // server.pluginManager.register('platform', pluginPlatform);
 
 // -------------------------------------------------------------------
-// register schemas
+// Register schemas
 // -------------------------------------------------------------------
-// server.stateManager.registerSchema('router', schema);
+// server.stateManager.registerSchema('my-schema', definition);
 
-await server.init();
+// -------------------------------------------------------------------
+// Launch application (init plugins, http server, etc.)
+// -------------------------------------------------------------------
 await server.start();
 
+// do your own stuff!
+
+// catch uncaught promise rejection
 process.on('unhandledRejection', (reason, p) => {
   console.log('> Unhandled Promise Rejection');
   console.log(reason);
