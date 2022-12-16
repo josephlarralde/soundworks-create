@@ -12,9 +12,9 @@
 
 The soundworks wizard is a interactive command line tool that gives you access to a bunch of high-level functionnalities, such as:
 - configure and create new clients
-- installing/uninstalling plugins and related libraries
-- create environment config files
+- install / uninstall plugins and related libraries
 - find some documentation
+- create environment config files
 - etc.
 
 ```sh
