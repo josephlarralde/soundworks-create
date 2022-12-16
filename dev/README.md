@@ -104,4 +104,4 @@ EMULATE=4 npm run watch:process thing
 
 ## License
 
-BSD-3-Clause
+[BSD-3-Clause](./LICENSE)
