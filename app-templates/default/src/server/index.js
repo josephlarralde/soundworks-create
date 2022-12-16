@@ -1,7 +1,5 @@
 import '@soundworks/helpers/polyfills.js';
 import { Server } from '@soundworks/core/server.js';
-// use `ENV=myconfigfile npm run dev` to run the server with a specific env config file
-// you can also override the port defined in the config file by doing `PORT=8001 npm run dev`
 import { loadConfig } from '../utils/load-config.js';
 
 // - General documentation: https://soundworks.dev/
