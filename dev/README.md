@@ -29,7 +29,7 @@ Launch the application in development mode. Watch file system, transpile and bun
 
 #### `npm run build`
 
-Build the application: transpile, bundle the source code without launching the server.
+Build the application: transpile and bundle the source code without launching the server.
 
 #### `npm run build:prod`
 
@@ -41,7 +41,7 @@ Launch the server without rebuilding the application.
 
 #### `npm run watch:process [name]` _(node clients only)_
 
-Launch the `[name]` client and restart when the sources are updated. Usefull for when developping node clients.
+Launch the `[name]` client and restart when the sources are updated. Usefull when developping node clients.
 
 ## Environment variables
 
@@ -56,7 +56,13 @@ Define which env config file should be used to run the server. Environment confi
 │  │  └─ prod.js   
 ```
 
-Running `ENV=prod npm run start` will start the server the `/config/env/prod.js` configuration file.
+For example:
+
+```sh
+ENV=prod npm run start
+``` 
+
+will start the server the `/config/env/prod.js` configuration file.
 
 If not given, the `/config/env/default.json` configuration file will be used.
 
