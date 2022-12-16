@@ -29,7 +29,7 @@ Launch the application in development mode. Watch file system, transpile and bun
 
 #### `npm run build`
 
-Build the application: transpile and bundle the source code without launching the server.
+Build the application. Transpile and bundle the source code without launching the server.
 
 #### `npm run build:prod`
 
@@ -37,11 +37,22 @@ Build the application for production. Same as `npm run build` but additionally c
 
 #### `npm run start`
 
-Launch the server without rebuilding the application.
+Launch the server without rebuilding the application. Basically a shortcut for `node ./.build/server/index.js`.
 
-#### `npm run watch:process [name]` _(node clients only)_
+#### `npm run watch [name]` _(node clients only)_
 
-Launch the `[name]` client and restart when the sources are updated. Usefull when developping node clients.
+Launch the `[name]` client and restart when the sources are updated. For example
+if you are developping an application with a node client, you should run the `dev` script in one terminal:
+
+```
+npm run dev
+```
+
+And launch and watch the node client(s) (e.g. called `thing` in another terminal
+
+```
+npm run watch thing
+```
 
 ## Environment variables
 

@@ -1,7 +1,7 @@
 import { LitElement, html, render, css, nothing } from 'lit';
 
-import './sw-infos-button.js';
-import './sw-credits.js';
+import '../../components/sw-infos-button.js';
+import '../../components/sw-credits.js';
 
 /**
  * This simple layout is provided for convenience, feel free to edit or even

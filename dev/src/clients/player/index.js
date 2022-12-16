@@ -37,7 +37,8 @@ async function main($container) {
     // - Display default initialization screens. If you want to change the provided
     // initialization screens, you can import all the helpers directly in your
     // application by doing `npx soundworks --eject-helpers`. You can also
-    // customise some global syles variables (bg-color, etc.) in `../app.scss`.
+    // customise some global syles variables (background-color, text color etc.)
+    // in `src/clients/components/css/app.scss`.
     // You can also change the default language of the intialization screen by
     // setting, the `launcher.language` property, e.g.:
     // `launcher.language = 'fr'`
