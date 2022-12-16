@@ -8,10 +8,6 @@
   // these two ports
   port: 8000,
 
-  // If the application runs behind a proxy server (e.g. https://my-domain.com/my-app/`),
-  // path to the application root (i.e. 'my-app')
-  subpath: '',
-
   // define if the HTTP server should be launched using secure connections.
   // For development purposes when set to `true` and no certificates are given
   // (cf. `httpsInfos`), a self-signed certificate is created.
@@ -24,6 +20,10 @@
     key: null,
     cert: null,
   },
+
+  // If the application runs behind a proxy server (e.g. https://my-domain.com/my-app/`),
+  // path to the application root (i.e. 'my-app')
+  subpath: '',
 
   // @important: for node clients only, Ip of the server
   // serverIp: '127.0.0.1',

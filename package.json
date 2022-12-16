@@ -20,8 +20,10 @@
   "dependencies": {
     "chalk": "^5.1.2",
     "commander": "^9.4.1",
+    "filenamify": "^5.1.1",
     "json5": "^2.2.1",
     "mkdirp": "^1.0.4",
+    "npm-check": "^6.0.1",
     "prompts": "^2.4.2",
     "recursive-readdir": "^2.2.3"
   },

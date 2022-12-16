@@ -7,11 +7,12 @@ import * as url from 'node:url';
 
 import chalk from 'chalk';
 import prompts from 'prompts';
+import filenamify from 'filenamify';
 import mkdirp from 'mkdirp';
 import readdir from 'recursive-readdir';
 import JSON5 from 'json5';
 
-import { toValidName, ignoreFiles, onCancel } from './lib/utils.js';
+import { toValidPackageName, ignoreFiles, onCancel } from './lib/utils.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
@@ -85,7 +86,7 @@ for (let src of files) {
 
   if (file === 'package.json') {
     const pkg = JSON.parse(fs.readFileSync(src));
-    pkg.name = toValidName(options.name);
+    pkg.name = toValidPackageName(options.name);
     fs.writeFileSync(dest, JSON.stringify(pkg, null, 2));
   } else if (file == 'config/application.json') {
     const obj = JSON5.parse(fs.readFileSync(src));

@@ -4,19 +4,28 @@ import path from 'node:path';
 import * as url from 'node:url';
 
 import chalk from 'chalk';
-import { program } from 'commander';
+import { program, Option } from 'commander';
 import prompts from 'prompts';
 
 import { createClient } from './lib/create-client.js';
+import { installPlugins, installLibs } from './lib/package-installer.js';
+import { findDoc } from './lib/find-doc.js';
+import { configInfos } from './lib/config-infos.js';
+import { createConfig } from './lib/create-config.js';
 import { ejectLauncher } from './lib/eject-launcher.js';
-import { packageInstaller } from './lib/package-installer.js';
-import { plugins, libraries } from './lib/database.js';
+import { checkDeps } from './lib/check-deps.js';
+
+import { onCancel } from './lib/utils.js';
 
 const tasks = {
   createClient,
+  installPlugins,
+  installLibs,
+  findDoc,
+  configInfos,
+  createConfig,
   ejectLauncher,
-  installPlugins: packageInstaller('plugins', plugins),
-  installLibs: packageInstaller('libraries', libraries),
+  checkDeps,
 };
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -29,10 +38,14 @@ console.log('');
 // allow to trigger specific taks from command line
 program
   .option('-c, --create-client', 'create a new soundworks client')
+  .option('-p, --install-plugins', 'install / uninstall soundworks plugins')
+  .option('-l, --install-libs', 'install / uninstall related libs')
+  .option('-f, --find-doc', 'find documentation about plugins and related libs')
+  .option('-i, --config-infos', 'get config informations about you application')
+  .option('-C, --create-config', 'create a new environment config file')
   .option('-e, --eject-launcher', 'eject the launcher and default views from `@soundworks/helpers`')
-  .option('-p, --install-plugins', 'install/uninstall soundworks plugins`')
-  .option('-l, --install-libs', 'install/uninstall related libs`')
-  .option('-i, --init', 'launched automatically by @soundworks/create, please do not launch manually')
+  .option('-d, --check-deps', 'check and update your dependencies')
+  .addOption(new Option('-i, --init').hideHelp()) // launched by @soundworks/create
 ;
 
 program.parse(process.argv);
@@ -43,8 +56,8 @@ if (options.init) {
   console.log(chalk.yellow(`> soundworks init wizard`));
   console.log('');
 
-  // installPlugins();
-  // installRelatedLibraries();
+  await installPlugins();
+  await installLibs();
   await tasks.createClient(appInfos);
 
   console.log(`\
@@ -53,7 +66,7 @@ ${chalk.yellow(`> soundworks init wizard done`)}
 
   process.exit(0);
 
-// options from command line
+// handle options from command line if any
 } else if (Object.keys(options).length > 0) {
   delete options.init; // this is not a task
   // execute all tasks one by one
@@ -63,17 +76,16 @@ ${chalk.yellow(`> soundworks init wizard done`)}
 
   process.exit(0);
 
-// no options given
+// no options given, launch interactive mode
 } else {
 
   console.log(`\
 ${chalk.yellow(`> welcome to the soundworks wizard`)}
+${chalk.grey(`- you can exit the wizard at any moment by typing Ctrl+C or by choosing the "exit" option`)}
 
 - documentation: ${chalk.cyan('https://soundworks.dev')}
 - issues: ${chalk.cyan('https://github.com/collective-soundworks/soundworks/issues')}
   `);
-
-  const onCancel = () => process.exit();
 
   /* eslint-disable-next-line no-constant-condition */
   while (true) {
@@ -83,15 +95,18 @@ ${chalk.yellow(`> welcome to the soundworks wizard`)}
         name: 'task',
         message: 'What do you want to do?',
         choices: [
-          { title: 'Create a new soundworks client', value: 'createClient' },
-          { title: 'Install/Uninstall some soundworks plugins', value: 'installPlugins' },
-          { title: 'Install/uninstall some related libs', value: 'installLibs' },
-          { title: 'Create a new env file', value: 'createEnv' },
-          { title: 'Find some documentation', value: 'findDoc' },
-          // show existing clients, command to launch them, etc.
-          { title: 'Get informations on you app', value: 'getInfos' },
-          { title: 'Eject the launcher and default init views', value: 'ejectLauncher' },
-          { title: 'Exit', value: 'exit' },
+          { title: 'create a new soundworks client', value: 'createClient' },
+          { title: 'install / uninstall soundworks plugins', value: 'installPlugins' },
+          { title: 'install / uninstall related libs', value: 'installLibs' },
+          { title: 'find documentation about plugins and libs', value: 'findDoc' },
+
+          { title: 'get config informations about you application', value: 'configInfos' },
+          { title: 'create a new environment config file', value: 'createConfig' },
+
+          { title: 'eject the launcher and default init views', value: 'ejectLauncher' },
+          { title: 'check and update your dependencies', value: 'checkDeps' },
+          // { title: 'start your application', value: 'startApp' }, (?)
+          { title: '→ exit', value: 'exit' },
         ],
       },
     ], { onCancel });
@@ -100,32 +115,7 @@ ${chalk.yellow(`> welcome to the soundworks wizard`)}
       process.exit(0);
     }
 
+    console.log('');
     await tasks[task](appInfos);
   }
 }
-
-
-
-// function getDeps() {
-//   const pkg = JSON.parse(fs.readFileSync(path.join(process.cwd(), '.soundworksrc')));
-// }
-
-// function installPlugins() {
-//   find already installed plugins
-//   const plugins = [
-//     '@soundworks/plugin-platform',
-//     '@soundworks/plugin-sync',
-//     '@soundworks/plugin-position',
-//   ];
-
-//   const plugins = await prompt({
-//     type: 'multiselect',
-//     name: 'color',
-//     message: 'Pick colors',
-//     choices: [
-//       { title: 'Red', value: '#ff0000' },
-//       { title: 'Green', value: '#00ff00', disabled: true },
-//       { title: 'Blue', value: '#0000ff', selected: true }
-//     ],
-//   });
-// }
