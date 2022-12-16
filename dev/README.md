@@ -23,29 +23,29 @@ npx soundworks
 
 ## Available npm scripts
 
-### `npm run dev`
+#### `npm run dev`
 
 Launch the application in development mode. Watch file system, transpile and bundle files on change (i.e. when a source file is saved), and restart the server when needed.
 
-### `npm run build`
+#### `npm run build`
 
 Build the application: transpile, bundle the source code without launching the server.
 
-### `npm run build:prod`
+#### `npm run build:prod`
 
 Build the application for production. Same as `npm run build` but additionally creates minified files for browser clients.
 
-### `npm run start`
+#### `npm run start`
 
 Launch the server without rebuilding the application.
 
-### `npm run watch:process [name]` _(node clients only)_
+#### `npm run watch:process [name]` _(node clients only)_
 
 Launch the `[name]` client and restart when the sources are updated. Usefull for when developping node clients.
 
 ## Environment variable
 
-### `ENV`
+#### `ENV`
 
 Define which env config file should be used to run the server. Environment config files are located in the `/config/env` directory. For example, given the following config files:
 
@@ -60,11 +60,11 @@ Running `ENV=prod npm run start` will start the server the `/config/env/prod.js`
 
 If not given, the `/config/env/default.json` configuration file will be used.
 
-### `PORT`
+#### `PORT`
 
 Allow to override the port defined in the config file. For example, running `PORT=3000 npm run start` will launch the server on port `3000` whatever the port value defined in the default config file.
 
-### `EMULATE` _(node clients only)_
+#### `EMULATE` _(node clients only)_
 
 Allow to run several node clients in parallel in the same terminal window. For example, running `EMULATE=4 npm run watch:process thing` will run 4 instances of the client `thing` in parallel (each client instance is run inside its own `fork`).
 
