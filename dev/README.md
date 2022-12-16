@@ -48,7 +48,7 @@ if you are developping an application with a node client, you should run the `de
 npm run dev
 ```
 
-And launch and watch the node client(s) (e.g. called `thing` in another terminal
+And launch and watch the node client(s) (e.g. called `thing`) in another terminal
 
 ```
 npm run watch thing
