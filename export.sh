@@ -42,8 +42,9 @@ mv "${dest}/src/clients/${client}" "client-templates/${client}"
 
 # ------------------------------------------------------------
 
-echo "> move babel.config.js and webpack.config.js into build-tools"
+echo "> move build dedicated files into build-tools"
 rm -f build-tools/*
 mv "${dest}/babel.config.js" "build-tools/babel.config.js"
 mv "${dest}/webpack.config.js" "build-tools/webpack.config.js"
+mv "${dest}/.eslintrc" "build-tools/.eslintrc"
 

@@ -13,6 +13,9 @@ import JSON5 from 'json5';
 
 import { toValidPackageName, ignoreFiles, onCancel } from './lib/utils.js';
 
+// @todo
+// - typescript support
+
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
 
@@ -63,11 +66,19 @@ const options = await prompts([
       };
     }),
   },
+  {
+    type: 'toggle',
+    name: 'eslint',
+    message: 'Install eslint?',
+    initial: true,
+    active: 'yes',
+    inactive: 'no',
+  },
 ], { onCancel });
 
 options.name = path.basename(targetWorkingDir);
+// @todo - support ts
 options.language = 'js';
-options.linting = true;
 
 const templateDir = path.join(templatesDir, options.template);
 const files = await readdir(templateDir, ignoreFiles);
@@ -83,25 +94,46 @@ for (let src of files) {
 
   await mkdirp(path.dirname(dest));
 
-  if (file === 'package.json') {
-    const pkg = JSON.parse(fs.readFileSync(src));
-    pkg.name = toValidPackageName(options.name);
-    fs.writeFileSync(dest, JSON.stringify(pkg, null, 2));
-  } else if (file == 'config/application.json') {
-    const obj = JSON5.parse(fs.readFileSync(src));
-    obj.name = options.name;
-    // @todo - make sure clients is empty
-    fs.writeFileSync(dest, JSON5.stringify(obj, null, 2));
+  switch (file) {
+    case 'package.json': {
+      const pkg = JSON.parse(fs.readFileSync(src));
+      pkg.name = toValidPackageName(options.name);
 
-    // @todo - handle README title
+      if (options.eslint) {
+        pkg.scripts.lint = `eslint .`;
+      }
 
-  } else {
-    fs.copyFileSync(src, dest);
+      fs.writeFileSync(dest, JSON.stringify(pkg, null, 2));
+      break;
+    }
+    case 'config/application.json': {
+      const obj = JSON5.parse(fs.readFileSync(src));
+      obj.name = options.name;
+      obj.clients = {};
+      fs.writeFileSync(dest, JSON5.stringify(obj, null, 2));
+      break;
+    }
+    case 'README.md': {
+      let readme = fs.readFileSync(src).toString();
+      readme = readme.replace('# `[app-name]`', `# \`${options.name}\``);
+      fs.writeFileSync(dest, readme);
+      break;
+    }
+    default: {
+      fs.copyFileSync(src, dest);
+      break;
+    }
   }
 }
 
-// write options in .soundworksrc file
-fs.writeFileSync(path.join(targetWorkingDir, '.soundworksrc'), JSON.stringify(options, null, 2));
+if (options.eslint === true) {
+  const src = path.join(__dirname, 'build-tools', '.eslintrc');
+  const dest = path.join(targetWorkingDir, '.eslintrc');
+  fs.copyFileSync(src, dest);
+}
+
+// write options in .soundworks file
+fs.writeFileSync(path.join(targetWorkingDir, '.soundworks'), JSON.stringify(options, null, 2));
 
 console.log(`> installing dependencies`);
 
@@ -110,45 +142,13 @@ const execOptions = {
   stdio: 'inherit',
 };
 
-execSync(`npm install`, execOptions);
+if (options.eslint === true) {
+  // this will install other deps as well
+  execSync(`npm install --save-dev eslint @ircam/eslint-config`, execOptions);
+} else {
+  execSync(`npm install`, execOptions);
+}
+
 // launch init wizard
 execSync(`npx soundworks --init`, execOptions);
-
-
-// await create(cwd, options);
-// console.log(bold(green('\nYour project is ready!')));
-
-// if (options.typescript) {
-//   console.log(bold('✔ Typescript'));
-// }
-
-// // if (options.eslint) {
-// //   console.log(bold('✔ ESLint'));
-// // }
-
-// // if (options.prettier) {
-// //   console.log(bold('✔ Prettier'));
-// // }
-
-// if (options.linting) {
-//   console.log(bold('✔ ESLint'));
-//   console.log(bold('✔ Prettier'));
-// }
-
-// console.log('\nNext steps:');
-// let i = 1;
-
-// const relative = path.relative(process.cwd(), cwd);
-// if (relative !== '') {
-//   console.log(`  ${i++}: ${bold(cyan(`cd ${relative}`))}`);
-// }
-
-// console.log(`  ${i++}: ${bold(cyan('npm install'))} (or pnpm install, etc)`);
-// // prettier-ignore
-// console.log(`  ${i++}: ${bold(cyan('git init && git add -A && git commit -m "Initial commit"'))} (optional)`);
-// console.log(`  ${i++}: ${bold(cyan('npm run dev -- --open'))}`);
-
-// console.log(`\nTo close the dev server, hit ${bold(cyan('Ctrl-C'))}`);
-// // console.log(`\nStuck? Visit us at ${cyan('https://svelte.dev/chat')}\n`);
-
 console.log('');

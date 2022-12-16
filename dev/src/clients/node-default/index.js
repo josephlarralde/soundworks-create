@@ -8,6 +8,7 @@ import createLayout from './views/layout.js';
 // - General documentation: https://soundworks.dev/
 // - API documentation:     https://soundworks.dev/api
 // - Issue Tracker:         https://github.com/collective-soundworks/soundworks/issues
+// - Wizard & Tools:        `npx soundworks`
 
 /**
  * Load configuration from config files

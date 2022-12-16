@@ -1,5 +1,7 @@
 # `[app-name]`
 
+Thanks for using soundworks!
+
 If you are developping an appliction using `soundworks`, let us know by filling a comment there [https://github.com/collective-soundworks/soundworks/discussions/61](https://github.com/collective-soundworks/soundworks/discussions/61)
 
 ## Links
