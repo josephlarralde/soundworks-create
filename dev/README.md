@@ -47,7 +47,9 @@ Launch the `[name]` client and restart when the sources are updated. Usefull whe
 
 #### `ENV`
 
-Define which env config file should be used to run the server. Environment config files are located in the `/config/env` directory. For example, given the following config files:
+Define which environment config file should be used to run the application. Environment config files are located in the `/config/env` directory. 
+
+For example, given the following config files:
 
 ```
 ├─ config
@@ -56,7 +58,7 @@ Define which env config file should be used to run the server. Environment confi
 │  │  └─ prod.js   
 ```
 
-For example, to start the server the `/config/env/prod.js` configuration file, run:
+To start the server the `/config/env/prod.js` configuration file, you should run:
 
 ```sh
 ENV=prod npm run start
@@ -66,9 +68,9 @@ By default, the `/config/env/default.json` configuration file is used.
 
 #### `PORT`
 
-Allow to override the port defined in the config file. 
+Override the port defined in the config file. 
 
-For example, to launch the server on port `3000` whatever the port value defined in the default config file, run:
+For example, to launch the server on port `3000` whatever the port value defined in the default config file, you should run:
 
 ```sh
 PORT=3000 npm run start
@@ -76,9 +78,9 @@ PORT=3000 npm run start
 
 #### `EMULATE` _(node clients only)_
 
-Allow to run several node clients in parallel in the same terminal window. 
+Run several node client instances in parallel in the same terminal window. 
 
-For example, to launch 4 instances of the client `thing` in parallel (each client instance being run inside its own `fork`), run:
+For example, to launch 4 instances of the client `thing` in parallel (each client instance being run inside its own `fork`), you should run:
 
 ```sh
 EMULATE=4 npm run watch:process thing
