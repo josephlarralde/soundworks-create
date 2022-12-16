@@ -56,23 +56,33 @@ Define which env config file should be used to run the server. Environment confi
 │  │  └─ prod.js   
 ```
 
-For example:
+For example, to start the server the `/config/env/prod.js` configuration file, run:
 
 ```sh
 ENV=prod npm run start
 ``` 
 
-will start the server the `/config/env/prod.js` configuration file.
-
-If not given, the `/config/env/default.json` configuration file will be used.
+By default, the `/config/env/default.json` configuration file is used.
 
 #### `PORT`
 
-Allow to override the port defined in the config file. For example, running `PORT=3000 npm run start` will launch the server on port `3000` whatever the port value defined in the default config file.
+Allow to override the port defined in the config file. 
+
+For example, to launch the server on port `3000` whatever the port value defined in the default config file, run:
+
+```sh
+PORT=3000 npm run start
+```
 
 #### `EMULATE` _(node clients only)_
 
-Allow to run several node clients in parallel in the same terminal window. For example, running `EMULATE=4 npm run watch:process thing` will run 4 instances of the client `thing` in parallel (each client instance is run inside its own `fork`).
+Allow to run several node clients in parallel in the same terminal window. 
+
+For example, to launch 4 instances of the client `thing` in parallel (each client instance being run inside its own `fork`), run:
+
+```sh
+EMULATE=4 npm run watch:process thing
+```
 
 ## Credits
 
