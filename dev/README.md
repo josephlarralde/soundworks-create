@@ -8,9 +8,9 @@
 - [Issue Tracker](https://github.com/collective-soundworks/soundworks/issues)
 - [Working with Max/MSP](https://github.com/collective-soundworks/soundworks-max)
 
-## Wizard
+## Soundworks wizard
 
-The wizard is a interactive command line tool that gives you access to a bunch of high-level functionnalities, such as:
+The soundworks wizard is a interactive command line tool that gives you access to a bunch of high-level functionnalities, such as:
 - configure and create new clients
 - installing/uninstalling plugins and related libraries
 - create environment config files
@@ -43,7 +43,7 @@ Launch the server without rebuilding the application.
 
 Launch the `[name]` client and restart when the sources are updated. Usefull for when developping node clients.
 
-## Environment variable
+## Environment variables
 
 #### `ENV`
 
