@@ -2,7 +2,6 @@ import '@soundworks/helpers/polyfills.js';
 
 import { Client } from '@soundworks/core/client.js';
 import launcher from '@soundworks/helpers/launcher.js';
-import { html } from 'lit/html.js';
 
 import createLayout from './views/layout.js';
 
@@ -57,6 +56,7 @@ async function main($container) {
     await client.start();
 
     // create application layout ($layout is a raw lit component, see https://lit.dev/)
+    /* eslint-disable-next-line no-unused-vars */
     const $layout = createLayout(client, $container);
 
     // do your own stuff!

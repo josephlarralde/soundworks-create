@@ -43,7 +43,7 @@ await server.start();
 // do your own stuff!
 
 // catch uncaught promise rejection
-process.on('unhandledRejection', (reason, p) => {
+process.on('unhandledRejection', (reason, _p) => {
   console.log('> Unhandled Promise Rejection');
   console.log(reason);
 });

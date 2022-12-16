@@ -7,7 +7,6 @@ import * as url from 'node:url';
 
 import chalk from 'chalk';
 import prompts from 'prompts';
-import filenamify from 'filenamify';
 import mkdirp from 'mkdirp';
 import readdir from 'recursive-readdir';
 import JSON5 from 'json5';
@@ -94,7 +93,7 @@ for (let src of files) {
     // @todo - make sure clients is empty
     fs.writeFileSync(dest, JSON5.stringify(obj, null, 2));
 
-  // @todo - handle README title
+    // @todo - handle README title
 
   } else {
     fs.copyFileSync(src, dest);

@@ -39,6 +39,7 @@ async function bootstrap() {
     await client.start();
 
     // create application layout (mimic lit API)
+    /* eslint-disable-next-line no-unused-vars */
     const $layout = createLayout(client);
 
     // do your own stuff!

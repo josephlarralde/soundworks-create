@@ -1,5 +1,4 @@
-import { LitElement, html, render, css, nothing } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { LitElement, html, render, css } from 'lit';
 
 import '../../components/sw-audit.js';
 

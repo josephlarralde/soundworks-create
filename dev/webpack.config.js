@@ -9,4 +9,4 @@ export default (config) => {
   // config.module.rules[0].use.options.plugins.push('@babel/plugin-transform-arrow-functions')
   // do something with the default config
   return config;
-}
+};

@@ -11,7 +11,7 @@ import createLayout from './views/layout.js';
 
 const config = window.soundworksConfig;
 
-async function main($container, index) {
+async function main($container) {
   try {
     const client = new Client(config);
 
@@ -31,6 +31,7 @@ async function main($container, index) {
     await client.start();
 
     // create main app layout
+    /* eslint-disable-next-line no-unused-vars */
     const $layout = createLayout(client, $container);
 
 

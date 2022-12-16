@@ -15,7 +15,7 @@
     "soundworks": "wizard.js"
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint"
   },
   "dependencies": {
     "chalk": "^5.1.2",

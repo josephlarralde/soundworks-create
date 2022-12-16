@@ -58,7 +58,7 @@ class Layout {
       }
     });
   }
-};
+}
 
 export default function createLayout(client) {
   const $layout = new Layout(client);
