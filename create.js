@@ -91,7 +91,11 @@ for (let src of files) {
   } else if (file == 'config/application.json') {
     const obj = JSON5.parse(fs.readFileSync(src));
     obj.name = options.name;
+    // @todo - make sure clients is empty
     fs.writeFileSync(dest, JSON5.stringify(obj, null, 2));
+
+  // @todo - handle README title
+
   } else {
     fs.copyFileSync(src, dest);
   }

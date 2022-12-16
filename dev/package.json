@@ -1,9 +1,9 @@
 {
-  "name": "soundworks-template",
+  "name": "soundworks-application",
+  "description": "soundworks application",
   "authors": [
     "Benjamin Matuszewski"
   ],
-  "description": "soundworks#v4 application template",
   "license": "BSD-3-Clause",
   "version": "4.0.0-alpha.0",
   "type": "module",
