@@ -9,14 +9,14 @@ import JSON5 from 'json5';
  * @param {String} [ENV='default'] - name of the environment. Should correspond
  *  to a file located in the `/config/env/` directory
  * @param {String} [callerURL=null] - for node clients, if `callerURL` is given,
- *  retrieves the `clientType` from caller directory name.
+ *  retrieves the `role` from caller directory name.
  *
  * @returns {Object} config
  * @returns {Object} config.app - JS object of the informations contained in
  *  `/config/application.json`.
  * @returns {Object} config.env - JS object of the informations contained in
  *  `/config/env/${ENV}.json` with ENV being the first argument.
- * @returns {Object} config.clientType - node client only: type/role of the client
+ * @returns {Object} config.role - node client only: type/role of the client
  *  as defined when the client has been created (see `/config/application.json`
  *  and directory name).
  */
@@ -49,13 +49,13 @@ export function loadConfig(ENV = 'default', callerURL = null) {
   }
 
   if (callerURL !== null) {
-    // we can grab the clientType from the caller url dirname
+    // we can grab the role from the caller url dirname
     const dirname = path.dirname(callerURL);
     const parent = path.resolve(dirname, '..');
-    const clientType = path.relative(parent, dirname);
+    const role = path.relative(parent, dirname);
 
-    if (clientType !== 'server') {
-      return { clientType, env, app };
+    if (role !== 'server') {
+      return { role, env, app };
     } else {
       return { env, app };
     }

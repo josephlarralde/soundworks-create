@@ -23,7 +23,7 @@
   },
 
   // IP or domain name of the server, only required by node clients
-  serverIp: '127.0.0.1',
+  serverAddress: '127.0.0.1',
 
   // If the application runs behind a proxy server (e.g. https://my-domain.com/my-app/`),
   // path to the application root (i.e. 'my-app')

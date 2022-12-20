@@ -41,8 +41,8 @@ class SwAudit extends LitElement {
         const numClientsStrings = [];
         const numClients = this.auditState.get('numClients');
 
-        for (let name in numClients) {
-          const str = `${name}: ${padLeft(numClients[name], 2)}`;
+        for (let role in numClients) {
+          const str = `${role}: ${padLeft(numClients[role], 2)}`;
           numClientsStrings.push(str);
         }
 
