@@ -12,6 +12,7 @@ import { installPlugins, installLibs } from './lib/package-installer.js';
 import { findDoc } from './lib/find-doc.js';
 import { configInfos } from './lib/config-infos.js';
 import { createConfig } from './lib/create-config.js';
+import { extendBuild } from './lib/extend-build.js';
 import { ejectLauncher } from './lib/eject-launcher.js';
 import { checkDeps } from './lib/check-deps.js';
 
@@ -24,6 +25,7 @@ const tasks = {
   findDoc,
   configInfos,
   createConfig,
+  extendBuild,
   ejectLauncher,
   checkDeps,
 };
@@ -31,7 +33,11 @@ const tasks = {
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 if (!fs.existsSync(path.join(process.cwd(), '.soundworks'))) {
-  console.error(chalk.red(`This project doesn't seem to be soundworks project, aborting...`));
+  console.error(chalk.red(`\
+This project doesn't seem to be soundworks project.
+Note that \`npx soundworks\` should be run at the root of your project
+Aborting...
+  `));
   process.exit();
 }
 
@@ -49,6 +55,7 @@ program
   .option('-f, --find-doc', 'find documentation about plugins and related libs')
   .option('-i, --config-infos', 'get config informations about you application')
   .option('-C, --create-config', 'create a new environment config file')
+  .option('-b, --extend-build', 'extend the build settings (babel, webpack) of your project')
   .option('-e, --eject-launcher', 'eject the launcher and default views from `@soundworks/helpers`')
   .option('-d, --check-deps', 'check and update your dependencies')
   .addOption(new Option('-i, --init').hideHelp()) // launched by @soundworks/create
@@ -132,6 +139,7 @@ ${chalk.grey(`- you can exit the wizard at any moment by typing Ctrl+C or by cho
           { title: 'get config informations about you application', value: 'configInfos' },
           { title: 'create a new environment config file', value: 'createConfig' },
 
+          { title: 'extend the build settings (babel, webpack) of your project', value: 'extendBuild' },
           { title: 'eject the launcher and default init views', value: 'ejectLauncher' },
           { title: 'check and update your dependencies', value: 'checkDeps' },
           // { title: 'start your application', value: 'startApp' }, (?)

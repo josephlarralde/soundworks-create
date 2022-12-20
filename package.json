@@ -15,7 +15,8 @@
     "soundworks": "wizard.js"
   },
   "scripts": {
-    "lint": "eslint"
+    "lint": "eslint",
+    "preversion": ". export.sh && git add app-templates build-tools client-templates && git commit -m 'updated templates'"
   },
   "dependencies": {
     "chalk": "^5.1.2",
