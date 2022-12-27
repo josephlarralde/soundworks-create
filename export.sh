@@ -7,6 +7,7 @@ rm -Rf dev/node_modules
 rm -Rf dev/.build
 rm -Rf dev/.data
 rm -Rf dev/package-lock.json
+rm -Rf dev/.soundworks
 
 # ------------------------------------------------------------
 

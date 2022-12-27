@@ -1,0 +1,5 @@
+{
+  "name": "js-template",
+  "language": "js",
+  "eslint": true
+}

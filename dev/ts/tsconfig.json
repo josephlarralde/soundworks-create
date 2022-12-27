@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 16",
+
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "target": "ESNext",
+    "sourceMap": true,
+    "esModuleInterop": true
+  }
+}
+  
