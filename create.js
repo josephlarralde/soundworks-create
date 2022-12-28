@@ -143,12 +143,16 @@ const execOptions = {
   stdio: 'inherit',
 };
 
+// install itself as a dev dependency
+const devDeps = ['@soundworks/create'];
+
 if (options.eslint === true) {
-  // this will install other deps as well
-  execSync(`npm install --save-dev eslint @ircam/eslint-config`, execOptions);
-} else {
-  execSync(`npm install`, execOptions);
+  devDeps.push('eslint');
+  devDeps.push('@ircam/eslint-config');
 }
+
+// this will install other deps as well
+execSync(`npm install --save-dev ${devDeps.join(' ')}`, execOptions);
 
 // launch init wizard
 execSync(`npx soundworks --init`, execOptions);
