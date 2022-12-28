@@ -77,29 +77,6 @@ if (options.init) {
 ${chalk.yellow(`> soundworks init wizard done`)}
   `);
 
-  // await create(cwd, options);
-  // console.log(bold(green('\nYour project is ready!')));
-
-  // if (options.typescript) {
-  //   console.log(bold('✔ Typescript'));
-  // }
-
-  // console.log('\nNext steps:');
-  // let i = 1;
-
-  // const relative = path.relative(process.cwd(), cwd);
-  // if (relative !== '') {
-  //   console.log(`  ${i++}: ${bold(cyan(`cd ${relative}`))}`);
-  // }
-
-  // console.log(`  ${i++}: ${bold(cyan('npm install'))} (or pnpm install, etc)`);
-  // // prettier-ignore
-  // console.log(`  ${i++}: ${bold(cyan('git init && git add -A && git commit -m "Initial commit"'))} (optional)`);
-  // console.log(`  ${i++}: ${bold(cyan('npm run dev -- --open'))}`);
-
-  // console.log(`\nTo close the dev server, hit ${bold(cyan('Ctrl-C'))}`);
-  // // console.log(`\nStuck? Visit us at ${cyan('https://svelte.dev/chat')}\n`);
-
   process.exit(0);
 
 // handle options from command line if any

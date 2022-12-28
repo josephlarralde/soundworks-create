@@ -28,7 +28,17 @@ ${chalk.yellow('> welcome to soundworks')}
 - issues: ${chalk.cyan('https://github.com/collective-soundworks/soundworks/issues')}
 `);
 
-let targetDir = process.argv[2] || '.';
+let debug = false; // will link itself at the end of the installation
+if (process.argv[2] == '--debug' || process.argv[3] == '--debug') {
+  debug = true;
+}
+
+let targetDir;
+if (process.argv[2] && process.argv[2] !== '--debug') {
+  targetDir = process.argv[2];
+} else {
+  targetDir = '.';
+}
 
 if (targetDir === '.') {
   const result = await prompts([
@@ -137,6 +147,7 @@ if (options.eslint === true) {
 fs.writeFileSync(path.join(targetWorkingDir, '.soundworks'), JSON.stringify(options, null, 2));
 
 console.log(`> installing dependencies`);
+console.log('');
 
 const execOptions = {
   cwd: targetWorkingDir,
@@ -154,6 +165,34 @@ if (options.eslint === true) {
 // this will install other deps as well
 execSync(`npm install --save-dev ${devDeps.join(' ')}`, execOptions);
 
+if (debug) {
+  execSync(`npm link @soundworks/create`, execOptions);
+}
+
 // launch init wizard
 execSync(`npx soundworks --init`, execOptions);
-console.log('');
+
+
+// recap & next steps
+console.log(chalk.yellow('> your project is ready!'));
+
+console.log(`  ✔ ${options.language === 'js' ? 'JavaScript' : 'TypeScript'}`);
+
+if (options.eslint) {
+  console.log('  ✔ eslint');
+}
+
+console.log('')
+console.log(chalk.yellow('> next steps:'));
+let i = 1;
+
+const relative = path.relative(process.cwd(), targetWorkingDir);
+if (relative !== '') {
+  console.log(`  ${i++}: ${chalk.cyan(`cd ${relative}`)}`);
+}
+
+console.log(`  ${i++}: ${chalk.cyan('git init && git add -A && git commit -m "first commit"')} (optional)`);
+console.log(`  ${i++}: ${chalk.cyan('npm run dev')}`);
+
+console.log('')
+console.log(`- to close the dev server, press ${chalk.bold(chalk.cyan('Ctrl-C'))}`);

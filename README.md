@@ -13,7 +13,7 @@ _WARNING_: The `@soundworks/create` tools target `soundworks#v4` which is still 
 ### Create a new soundworks application
 
 ```sh
-npx init @soundworks
+npx @soundworks/create@latest
 ```
 
 ### Use the wizard inside an existing application
