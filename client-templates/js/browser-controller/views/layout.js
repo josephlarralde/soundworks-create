@@ -63,7 +63,7 @@ class ControllerLayout extends LitElement {
   render() {
     return html`
       <header>
-        <h1>${this.client.config.app.name} | ${this.client.type}</h1>
+        <h1>${this.client.config.app.name} | ${this.client.role}</h1>
         <sw-audit .client="${this.client}"></sw-audit>
       </header>
       <div>
@@ -76,7 +76,7 @@ class ControllerLayout extends LitElement {
 customElements.define('controller-layout', ControllerLayout);
 
 export default function createLayout(client, $container) {
-  const layoutId = `${client.type}-${client.id}`;
+  const layoutId = `${client.role}-${client.id}`;
 
   render(html`
     <controller-layout

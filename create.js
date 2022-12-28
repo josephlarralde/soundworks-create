@@ -52,20 +52,20 @@ if (fs.existsSync(targetWorkingDir) && fs.readdirSync(targetWorkingDir).length >
 }
 
 const templatesDir = path.join(__dirname, 'app-templates');
-const templatesMetas = JSON.parse(fs.readFileSync(path.join(templatesDir, 'metas.json')));
+// const templatesMetas = JSON.parse(fs.readFileSync(path.join(templatesDir, 'metas.json')));
 
 const options = await prompts([
-  {
-    type: 'select',
-    name: 'template',
-    message: 'Choose a soundworks app template?',
-    choices: Object.entries(templatesMetas).map(([dir, infos]) => {
-      return {
-        title: infos.description,
-        value: dir,
-      };
-    }),
-  },
+  // {
+  //   type: 'select',
+  //   name: 'template',
+  //   message: 'Choose a soundworks app template?',
+  //   choices: Object.entries(templatesMetas).map(([dir, infos]) => {
+  //     return {
+  //       title: infos.description,
+  //       value: dir,
+  //     };
+  //   }),
+  // },
   {
     type: 'toggle',
     name: 'eslint',
@@ -74,19 +74,20 @@ const options = await prompts([
     active: 'yes',
     inactive: 'no',
   },
+  // @todo - choose language
 ], { onCancel });
 
 options.name = path.basename(targetWorkingDir);
 // @todo - support ts
 options.language = 'js';
 
-const templateDir = path.join(templatesDir, options.template);
+const templateDir = path.join(templatesDir, options.language);
 const files = await readdir(templateDir, ignoreFiles);
 
 await mkdirp(targetWorkingDir);
 
 console.log('');
-console.log(`> creating ${options.template} template in:`, targetWorkingDir);
+console.log(`> creating ${options.language} template in:`, targetWorkingDir);
 
 for (let src of files) {
   const file = path.relative(templateDir, src);

@@ -18,11 +18,14 @@
     "watch:sass": "sass --watch src/clients/components/css:.build/public/css"
   },
   "dependencies": {
-    "@soundworks/core": "^3.1.0",
+    "@soundworks/core": "^4.0.0-alpha.0",
+    "@soundworks/helpers": "^1.0.0-alpha.2",
+    "eslint": "^8.30.0",
     "json5": "^2.2.1",
     "lit": "^2.2.2"
   },
   "devDependencies": {
+    "@soundworks/build": "^1.0.0-alpha.0",
     "concurrently": "^7.1.0",
     "sass": "^1.51.0"
   }

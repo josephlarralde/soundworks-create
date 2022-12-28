@@ -82,7 +82,7 @@ class SimpleLayout extends LitElement {
 customElements.define('simple-layout', SimpleLayout);
 
 export default function createLayout(client, $container) {
-  const layoutId = `${client.type}-${client.id}`;
+  const layoutId = `${client.role}-${client.id}`;
 
   render(html`
     <simple-layout

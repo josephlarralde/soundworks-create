@@ -9,7 +9,7 @@ import createLayout from './views/layout.js';
 // - Issue Tracker:         https://github.com/collective-soundworks/soundworks/issues
 // - Wizard & Tools:        `npx soundworks`
 
-const config = window.soundworksConfig;
+const config = window.SOUNDWORKS_CONFIG;
 
 async function main($container) {
   try {

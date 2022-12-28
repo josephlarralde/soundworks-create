@@ -10,16 +10,12 @@ import createLayout from './views/layout.js';
 // - Issue Tracker:         https://github.com/collective-soundworks/soundworks/issues
 // - Wizard & Tools:        `npx soundworks`
 
-/**
- * Load configuration from config files
- */
-const config = loadConfig(process.env.ENV, import.meta.url);
-
 async function bootstrap() {
   try {
     /**
-     * Create the soundworks client
+     * Load configuration from config files and create the soundworks client
      */
+    const config = loadConfig(process.env.ENV, import.meta.url);
     const client = new Client(config);
 
     /**

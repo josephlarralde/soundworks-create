@@ -2,44 +2,46 @@
 
 # export and split the `dev` application to target directories
 
+src="dev/js"
+dest="app-templates/js"
+
 echo "> cleaning dev application"
-rm -Rf dev/node_modules
-rm -Rf dev/.build
-rm -Rf dev/.data
-rm -Rf dev/package-lock.json
-rm -Rf dev/.soundworks
+rm -Rf "${src}/node_modules"
+rm -Rf "${src}/.build"
+rm -Rf "${src}/.data"
+rm -Rf "${src}/package-lock.json"
+rm -Rf "${src}/.soundworks"
 
 # ------------------------------------------------------------
 
 echo "> copy dev into app-templates"
 
-dest="app-templates/default"
 # clean dest
 rm -Rf $dest
 # copy dev to dest
-cp -R dev $dest
+cp -R $src $dest
 
 echo "  + override application.json"
 cp "app-templates/application.template.json" "${dest}/config/application.json"
 
 # ------------------------------------------------------------
 
-echo "> move clients to client-templates"
+echo "> move clients to client-templates/js"
 
-echo "  + browser-controller"
+rm -Rf "client-templates/js"
+mkdir -p client-templates/js
+
 client="browser-controller"
-rm -Rf "client-templates/${client}"
-mv "${dest}/src/clients/${client}" "client-templates/${client}"
+echo "  + ${client}"
+mv "${dest}/src/clients/${client}" "client-templates/js/${client}"
 
-echo "  + browser-default"
 client="browser-default"
-rm -Rf "client-templates/${client}"
-mv "${dest}/src/clients/${client}" "client-templates/${client}"
+echo "  + ${client}"
+mv "${dest}/src/clients/${client}" "client-templates/js/${client}"
 
-echo "  + node-default"
 client="node-default"
-rm -Rf "client-templates/${client}"
-mv "${dest}/src/clients/${client}" "client-templates/${client}"
+echo "  + ${client}"
+mv "${dest}/src/clients/${client}" "client-templates/js/${client}"
 
 # ------------------------------------------------------------
 

@@ -42,10 +42,6 @@ async function bootstrap() {
     /* eslint-disable-next-line no-unused-vars */
     const $layout = createLayout(client);
 
-    setTimeout(() => {
-      Promise.reject('my idiot error');
-    }, 3000);
-
   } catch(err) {
     console.error(err);
   }

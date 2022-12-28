@@ -53,7 +53,7 @@ class Layout {
       const value = comp.render ? comp.render() : comp;
 
       if (last !== value) {
-        console.log(chalk.green(`[${this.client.type} ${this.client.id}]`), value);
+        console.log(chalk.green(`[${this.client.role} ${this.client.id}]`), value);
         this.lastComponentOutput.set(comp, value);
       }
     });

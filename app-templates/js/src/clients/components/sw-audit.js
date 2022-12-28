@@ -34,15 +34,14 @@ class SwAudit extends LitElement {
   }
 
   async firstUpdated() {
-    // move this to its own components
     this.auditState = await this.client.getAuditState();
     this.auditState.onUpdate(updates => {
       if ('numClients' in updates) {
         const numClientsStrings = [];
         const numClients = this.auditState.get('numClients');
 
-        for (let name in numClients) {
-          const str = `${name}: ${padLeft(numClients[name], 2)}`;
+        for (let role in numClients) {
+          const str = `${role}: ${padLeft(numClients[role], 2)}`;
           numClientsStrings.push(str);
         }
 

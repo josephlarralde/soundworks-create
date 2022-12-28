@@ -12,7 +12,7 @@ import createLayout from './views/layout.js';
 /**
  * Grab the configuration object written by the server in the `index.html`
  */
-const config = window.soundworksConfig;
+const config = window.SOUNDWORKS_CONFIG;
 
 /**
  * If multiple clients are emulated you might to want to share some resources
