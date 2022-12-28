@@ -13,6 +13,8 @@ import JSON5 from 'json5';
 
 import { toValidPackageName, ignoreFiles, onCancel } from './lib/utils.js';
 
+// console.log('coucou');
+// process.exit(0);
 // @todo
 // - typescript support
 
@@ -163,7 +165,7 @@ if (options.eslint === true) {
 }
 
 // this will install other deps as well
-execSync(`npm install --save-dev ${devDeps.join(' ')}`, execOptions);
+execSync(`npm install --save-dev ${devDeps.join(' ')} --silent`, execOptions);
 
 if (debug) {
   execSync(`npm link @soundworks/create`, execOptions);
