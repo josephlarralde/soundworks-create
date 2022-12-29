@@ -15,8 +15,6 @@ import { toValidPackageName, ignoreFiles, onCancel } from './lib/utils.js';
 
 // console.log('coucou');
 // process.exit(0);
-// @todo
-// - typescript support
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
@@ -66,31 +64,35 @@ if (fs.existsSync(targetWorkingDir) && fs.readdirSync(targetWorkingDir).length >
 const templatesDir = path.join(__dirname, 'app-templates');
 // const templatesMetas = JSON.parse(fs.readFileSync(path.join(templatesDir, 'metas.json')));
 
-const options = await prompts([
-  // {
-  //   type: 'select',
-  //   name: 'template',
-  //   message: 'Choose a soundworks app template?',
-  //   choices: Object.entries(templatesMetas).map(([dir, infos]) => {
-  //     return {
-  //       title: infos.description,
-  //       value: dir,
-  //     };
-  //   }),
-  // },
-  {
-    type: 'toggle',
-    name: 'eslint',
-    message: 'Install eslint?',
-    initial: true,
-    active: 'yes',
-    inactive: 'no',
-  },
-  // @todo - choose language
-], { onCancel });
+const options = {};
+
+// @todo - reconsider asking these questions when we have the typescript template ready
+
+// const options = await prompts([
+//   // {
+//   //   type: 'select',
+//   //   name: 'template',
+//   //   message: 'Choose a soundworks app template?',
+//   //   choices: Object.entries(templatesMetas).map(([dir, infos]) => {
+//   //     return {
+//   //       title: infos.description,
+//   //       value: dir,
+//   //     };
+//   //   }),
+//   // },
+//   {
+//     type: 'toggle',
+//     name: 'eslint',
+//     message: 'Install eslint?',
+//     initial: true,
+//     active: 'yes',
+//     inactive: 'no',
+//   },
+//   // @todo - choose language
+// ], { onCancel });
 
 options.name = path.basename(targetWorkingDir);
-// @todo - support ts
+options.eslint = true;
 options.language = 'js';
 
 const templateDir = path.join(templatesDir, options.language);
