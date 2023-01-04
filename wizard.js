@@ -64,8 +64,8 @@ program
 program.parse(process.argv);
 const options = program.opts();
 
+// init wizard, called by @soundworks/create
 if (options.init) {
-  console.log('');
   console.log(chalk.yellow(`> soundworks init wizard`));
   console.log('');
 
@@ -73,13 +73,12 @@ if (options.init) {
   await installLibs();
   await tasks.createClient(appInfos);
 
-  console.log(`\
-${chalk.yellow(`> soundworks init wizard done`)}
-  `);
+  console.log(chalk.yellow(`> soundworks init wizard done`));
+  console.log('');
 
   process.exit(0);
 
-// handle options from command line if any
+// handle options from command line
 } else if (Object.keys(options).length > 0) {
   delete options.init; // this is not a task
   // execute all tasks one by one
@@ -89,9 +88,8 @@ ${chalk.yellow(`> soundworks init wizard done`)}
 
   process.exit(0);
 
-// no options given, launch interactive mode
+// no options given from command line, launch interactive mode
 } else {
-
   console.log(`\
 ${chalk.yellow(`> welcome to the soundworks wizard`)}
 ${chalk.grey(`- you can exit the wizard at any moment by typing Ctrl+C or by choosing the "exit" option`)}

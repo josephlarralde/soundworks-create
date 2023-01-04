@@ -19,11 +19,11 @@ console.log(`
 `);
 
 /**
- * Create the soundworks server and configure for usage within default
- * soundworks application file layout
+ * Create the soundworks server
  */
 const server = new Server(config);
-server.setDefaultTemplateConfig();
+// configure the server for usage within this application template
+server.useDefaultApplicationTemplate();
 
 /**
  * Register plugins
