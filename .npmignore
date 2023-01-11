@@ -4,7 +4,11 @@ Thumbs.db
 .eslintrc
 .editorconfig
 
-!build-tools/.eslintrc
-
 dev
+
+# these files are required for the wizard
+!build-tools/.eslintrc
+!app-templates/**/.gitignore
+!app-templates/**/.editorconfig
+
 
