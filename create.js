@@ -135,14 +135,11 @@ for (let src of files) {
       break;
     }
     default: {
-      // console.log(src, dest);
       fs.copyFileSync(src, dest);
       break;
     }
   }
 }
-
-// process.exit(0);
 
 if (options.eslint === true) {
   const src = path.join(__dirname, 'build-tools', '.eslintrc');
