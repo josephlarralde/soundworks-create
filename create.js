@@ -139,7 +139,9 @@ for (let src of files) {
     case '.npmignore': {
       const gitignore = path.join(targetWorkingDir, '.gitignore');
       fs.copyFileSync(src, gitignore);
+      break;
     }
+    // just copy the file without modification
     default: {
       fs.copyFileSync(src, dest);
       break;
