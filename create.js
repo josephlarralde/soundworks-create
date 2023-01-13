@@ -134,6 +134,12 @@ for (let src of files) {
       fs.writeFileSync(dest, readme);
       break;
     }
+    // npm has weird behavior regarding .gitignore files which are automatically
+    // transformed .npmignore
+    case '.npmignore': {
+      const gitignore = path.join(targetWorkingDir, '.gitignore');
+      fs.copyFileSync(src, gitignore);
+    }
     default: {
       fs.copyFileSync(src, dest);
       break;
