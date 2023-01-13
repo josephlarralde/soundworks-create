@@ -29,7 +29,7 @@ async function main($container) {
    * Register some soundworks plugins, you will need to install the plugins
    * before hand (run `npx soundworks` for help)
    */
-  // client.pluginManager.register('platform', pluginPlatform, { audioContext });
+  // client.pluginManager.register('my-plugin', plugin);
 
   /**
    * Register the soundworks client into the launcher

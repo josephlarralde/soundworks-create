@@ -26,13 +26,9 @@ const server = new Server(config);
 server.useDefaultApplicationTemplate();
 
 /**
- * Register plugins
+ * Register plugins and schemas
  */
-// server.pluginManager.register('platform', pluginPlatform);
-
-/**
- * Register schemas
- */
+// server.pluginManager.register('my-plugin', plugin);
 // server.stateManager.registerSchema('my-schema', definition);
 
 /**
