@@ -18,10 +18,10 @@ async function bootstrap() {
   const client = new Client(config);
 
   /**
-   * Register some soundworks plugins
-   * you will need to install the plugins before hand, run `npx soundworks` for help
+   * Register some soundworks plugins, you will need to install the plugins
+   * before hand (run `npx soundworks` for help)
    */
-  // client.pluginManager.register('platform', pluginPlatform, { audioContext });
+  // client.pluginManager.register('my-plugin', plugin);
 
   /**
    * Register the soundworks client into the launcher
@@ -36,8 +36,9 @@ async function bootstrap() {
    */
   await client.start();
 
-  // create application layout (which mimics lit API)
+  // create application layout (which mimics the client-side API)
   const $layout = createLayout(client);
+
   // ...and do your own stuff!
 }
 
