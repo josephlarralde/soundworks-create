@@ -11,7 +11,7 @@ import { createClient } from './lib/create-client.js';
 import { installPlugins, installLibs } from './lib/package-installer.js';
 import { findDoc } from './lib/find-doc.js';
 import { configInfos } from './lib/config-infos.js';
-import { createConfig } from './lib/create-config.js';
+import { createEnv } from './lib/create-env.js';
 import { extendBuild } from './lib/extend-build.js';
 import { ejectLauncher } from './lib/eject-launcher.js';
 import { checkDeps } from './lib/check-deps.js';
@@ -24,7 +24,7 @@ const tasks = {
   installLibs,
   findDoc,
   configInfos,
-  createConfig,
+  createEnv,
   extendBuild,
   ejectLauncher,
   checkDeps,
@@ -54,7 +54,7 @@ program
   .option('-l, --install-libs', 'install / uninstall related libs')
   .option('-f, --find-doc', 'find documentation about plugins and related libs')
   .option('-i, --config-infos', 'get config informations about you application')
-  .option('-C, --create-config', 'create a new environment config file')
+  .option('-C, --create-env', 'create a new environment config file')
   .option('-b, --extend-build', 'extend the build settings (babel, webpack) of your project')
   .option('-e, --eject-launcher', 'eject the launcher and default views from `@soundworks/helpers`')
   .option('-d, --check-deps', 'check and update your dependencies')
@@ -112,7 +112,7 @@ ${chalk.grey(`- you can exit the wizard at any moment by typing Ctrl+C or by cho
           { title: 'find documentation about plugins and libs', value: 'findDoc' },
 
           { title: 'get config informations about you application', value: 'configInfos' },
-          { title: 'create a new environment config file', value: 'createConfig' },
+          { title: 'create a new environment config file', value: 'createEnv' },
 
           { title: 'extend the build settings (babel, webpack) of your project', value: 'extendBuild' },
           { title: 'eject the launcher and default init views', value: 'ejectLauncher' },
